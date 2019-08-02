@@ -4,8 +4,8 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:40032",
-      "sslPort": 44311
+      "applicationUrl": "http://localhost:51386",
+      "sslPort": 44303
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "AEMETData": {
+    "AEMETData.WebApi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",
