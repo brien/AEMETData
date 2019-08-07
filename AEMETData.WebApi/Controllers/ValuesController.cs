@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+
 
 namespace AEMETData.WebApi.Controllers
 {
@@ -10,11 +12,18 @@ namespace AEMETData.WebApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        public ValuesController(IConfiguration config)
+        {
+            _config = config;
+        }
+        private readonly IConfiguration _config;
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var myValue = "0";
+            myValue = _config.GetValue<string>("message");
+            return new string[] { "value1", "value2", myValue };
         }
 
         // GET api/values/5
