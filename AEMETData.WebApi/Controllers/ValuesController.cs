@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-
+using RestSharp;
 
 namespace AEMETData.WebApi.Controllers
 {
@@ -26,11 +26,15 @@ namespace AEMETData.WebApi.Controllers
             return new string[] { "value1", "value2", myValue };
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        // GET api/values/keyfromAEMET
+        [HttpGet("{key}")]
+        public ActionResult<string> Get(string key)
         {
-            return "value";
+            var client = new RestClient("https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones/?api_key=" + key);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            IRestResponse response = client.Execute(request);
+            return response.ResponseStatus.ToString();
         }
 
         // POST api/values
