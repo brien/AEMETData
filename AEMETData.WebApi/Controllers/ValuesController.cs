@@ -31,6 +31,8 @@ namespace AEMETData.WebApi.Controllers
         public ActionResult<string> Get(string key)
         {
             var client = new RestClient("https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones/?api_key=" + key);
+            client.RemoteCertificateValidationCallback = 
+            (sender, certificate, chain, sslPolicyErrors) => true;
             var request = new RestRequest(Method.GET);
             request.AddHeader("cache-control", "no-cache");
             IRestResponse response = client.Execute(request);
