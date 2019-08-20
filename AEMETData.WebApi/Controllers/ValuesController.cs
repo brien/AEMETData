@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
+using AEMETData.Core.Models;
 
 namespace AEMETData.WebApi.Controllers
 {
@@ -37,7 +38,7 @@ namespace AEMETData.WebApi.Controllers
             request.AddHeader("cache-control", "no-cache");
             IRestResponse response = client.Execute(request);
 
-            
+
             return response.Content.ToString();
         }
 
