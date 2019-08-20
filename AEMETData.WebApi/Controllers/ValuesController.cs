@@ -36,7 +36,8 @@ namespace AEMETData.WebApi.Controllers
             var request = new RestRequest(Method.GET);
             request.AddHeader("cache-control", "no-cache");
             IRestResponse response = client.Execute(request);
-            return response.ResponseStatus.ToString();
+
+            return response.Content.ToString();
         }
 
         // POST api/values
