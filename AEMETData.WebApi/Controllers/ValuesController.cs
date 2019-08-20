@@ -37,6 +37,7 @@ namespace AEMETData.WebApi.Controllers
             request.AddHeader("cache-control", "no-cache");
             IRestResponse response = client.Execute(request);
 
+            
             return response.Content.ToString();
         }
 
