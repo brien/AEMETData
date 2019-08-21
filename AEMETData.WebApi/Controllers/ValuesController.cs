@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
 using AEMETData.Core.Models;
+using Newtonsoft.Json;
+
 
 namespace AEMETData.WebApi.Controllers
 {
@@ -37,7 +39,7 @@ namespace AEMETData.WebApi.Controllers
             var request = new RestRequest(Method.GET);
             request.AddHeader("cache-control", "no-cache");
             IRestResponse response = client.Execute(request);
-
+            var aemetResponse = JsonConvert.DeserializeObject(response.Content);
 
             return response.Content.ToString();
         }
